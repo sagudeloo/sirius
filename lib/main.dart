@@ -1,41 +1,46 @@
-import 'package:flutter/material.dart';
+// Copyright 2018 Google LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
-void main() => runApp(MyApp());
+import 'package:flutter/foundation.dart'
+    show debugDefaultTargetPlatformOverride;
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+void main() {
+  // See https://github.com/flutter/flutter/wiki/Desktop-shells#target-platform-override
+  debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
+
+  runApp(new MyApp());
+}
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
+        // See https://github.com/flutter/flutter/wiki/Desktop-shells#fonts
+        fontFamily: 'Roboto',
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Sirius'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
   final String title;
 
@@ -45,6 +50,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  final List<String> _objSize = ['1','2','3'];
+  int _index = 0;
 
   void _incrementCounter() {
     setState(() {
@@ -57,20 +64,33 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _test(){
+
+    setState(() {
+      if(_index == 2)_index=0;
+      else _index++;
+      print(_index);
+    });
+
+  }
+
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text(
+          widget.title,
+          style: TextStyle(
+            fontFamily: 'Raleway',
+            fontSize: 30.0
+          ),
+          ),
+        centerTitle: true,
+        
       ),
+      backgroundColor: Colors.black,
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
@@ -79,25 +99,165 @@ class _MyHomePageState extends State<MyHomePage> {
           // arranges them vertically. By default, it sizes itself to fit its
           // children horizontally, and tries to be as tall as its parent.
           //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
           // Column has various properties to control how it sizes itself and
           // how it positions its children. Here we use mainAxisAlignment to
           // center the children vertically; the main axis here is the vertical
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+            Container(
+              height: 100,
+              width: double.infinity,
+              margin: const EdgeInsets.only(top: 20.0, bottom: 20.0),
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: Text(
+                  'Machine\nController',
+                  style: TextStyle(
+                    fontSize: 40.0,
+                    decoration: TextDecoration.none,
+                    fontFamily: 'Raleway',
+                    fontWeight: FontWeight.w700,
+                    color: Colors.deepPurple[300]
+                  ),
+                  ),
+              ),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
+            SizedBox(
+              height: 100,
+              width: double.infinity,
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          height: 60,
+                          width: 60,
+                          decoration: BoxDecoration(
+                          color: Colors.grey
+                          ),
+                          child: RaisedButton(
+                            onPressed: _test,
+                            child: Icon(Icons.play_arrow),
+                          ),
+                        ),
+                        Text(
+                          'Carry',
+                          style: TextStyle(
+                            fontFamily: 'Raleway',
+                            color: Colors.white
+                          ),
+                          )
+                      ]
+                    ),
+                  ),
+                  Expanded(
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          height: 60,
+                          width: 60,
+                          decoration: BoxDecoration(
+                          color: Colors.grey
+                          ),
+                          child: RaisedButton(
+                            onPressed: (){print('put');},   //Here might be impremented the carry function
+                            child: Icon(Icons.stop),
+                          ),
+                        ),
+                        Text(
+                          'Left',
+                          style: TextStyle(
+                            fontFamily: 'Raleway',
+                            color: Colors.white
+                          ),
+                          )
+                      ]
+                    ),
+                  ),
+                  Expanded(
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          height: 60,
+                          width: 60,
+                          decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.grey[300]
+                          ),
+                          child: Text(
+                            _objSize[_index],                                 //String with the size of the object taken
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontFamily: 'Raleway',
+                              color: Colors.red,
+                              fontSize: 50,
+                            )
+                            )
+                        ),
+                        Text(
+                          'Object Size',
+                          style: TextStyle(
+                            fontFamily: 'Raleway',
+                            color: Colors.white
+                          ),
+                          )
+                      ]
+                    ),
+                  )
+                ],
+              ),
             ),
+            SizedBox(
+              height: 40,
+              width: 100,
+              child: RaisedButton(
+                onPressed: (){print('Up');},
+                child: const Icon(Icons.arrow_upward),
+                color: Colors.blue[300],
+              ),
+            ),
+            SizedBox(
+              height: 50,
+              width: 300,
+              child: 
+                Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: RaisedButton(
+                        onPressed: (){print('left');},
+                        child: const Icon(Icons.arrow_left),
+                        color: Colors.blue[300],
+                      )
+                    ),
+                    Expanded(
+                      child: SizedBox(
+                        height: 100,
+                        width: 100,
+                      ),
+                    ),
+                    Expanded(
+                      child: RaisedButton(
+                        onPressed: (){print('right');},
+                        child: Icon(Icons.arrow_right),
+                        color: Colors.blue[300],
+                      )
+                    )
+              ],
+              
+            )),
+            SizedBox(
+              height: 40,
+              width: 100,
+              child: RaisedButton(
+                onPressed: (){print('Down');},
+                child: Icon(Icons.arrow_downward),
+                color: Colors.blue[300],
+              ),
+            )
           ],
         ),
       ),
@@ -109,3 +269,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
