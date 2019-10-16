@@ -73,3 +73,5 @@ sirius_flutter_app/build/
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 
 sirius_server/node_modules
+sirius_workspace.code-workspace
+sirius_arduino_code/SerialCommandsApp_my_test_ino/SerialCommandsApp_my_test_ino.ino
