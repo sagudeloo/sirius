@@ -94,6 +94,10 @@ void loop() {
       case 'e':
         digitalWrite(eMag, HIGH);
         break;
+        
+      case 'd':
+        digitalWrite(eMag, LOW);
+        break;
     }
 
     tamano();
