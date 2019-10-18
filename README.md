@@ -1,8 +1,12 @@
 # SIRIUS
 
+
+
 Pedro Quintero
 Stiven Agudelo
 Maria Antonia Rincón
+
+Teoría de la Conmutación
 
 Desarrollo del parcial - SIRIUS
 
