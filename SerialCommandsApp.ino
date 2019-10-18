@@ -1,5 +1,5 @@
+//Definición de pines
 int charRec = 0; // for incoming serial data
-bool inPosition = false;
 int up = 23;
 int down = 22;
 int left = 25;
@@ -31,8 +31,14 @@ void setup() {
   DDRC = B11110000;
 }
 
+/*
+Evalúa cada comando como un caracter.
+En caso de que sean movimeintos horizontales, se espera a que el electroimán esté en una posición determinada para  volver a 
+moverse.
+En caso de ser movimientos verticales, solo permite que se mueva en el límite de los sensores de arriba y abajo.
+*/
 void loop() {
-  // send data only when you receive data:
+  // Enviar los datos cuando los reciba
   if (Serial.available() > 0) {
     charRec = Serial.read();
 
@@ -102,10 +108,18 @@ void loop() {
 
     tamano();
     preguntarPosHor();
+    preguntarPosVer();
 
   }
 }
 
+/*
+Método encargado de recuperar el tamaño del disco con el que se esté manteniendo contacto. Se realiza mediante la comunicación 
+directa con el puerto, y se saca la informacipon del mismo.
+b: big
+m: medium
+s: small
+*/
 void tamano() {
   byte tamanno;
   tamanno = PINC;
@@ -123,6 +137,11 @@ void tamano() {
       break;
   }
 }
+
+/*
+Método encargado de recuperar la posición horizontal en la que el electroimán se encuentre (P1, P2, P3) y la retorna en la 
+variable pos
+*/
 int preguntarPosHor() {
   if (digitalRead(p1) == HIGH) {
     pos = 1;
@@ -140,6 +159,12 @@ int preguntarPosHor() {
   }
 }
 
+/*
+Método que retorna la posición vertical en la que el electroimán se encuentre (arriba o abajo), todo esto mediante sensores que
+que activan cuando el electroimán pase por ellos.
+1: Arriba
+2: Abajo
+*/
 void preguntarPosVer() {
   if (digitalRead(sarr) == HIGH) {
     posV = 1;
