@@ -1,14 +1,6 @@
-# SIRIUS
-
-
-
 Pedro Quintero
-
 Stiven Agudelo
-
 Maria Antonia Rincón
-
-Teoría de la Conmutación
 
 Desarrollo del parcial - SIRIUS
 
@@ -27,7 +19,7 @@ En breve descripción: Desde la aplicación se comandará una acción para que e
 evalúa, identificando qué es lo que ésta hará en el electrimán, y finalmente, el electroimán funcionará dependiendo de la orden
 que le haya sido enviada. Luego de ejecutarse, la infromación que el electroimán mantenga (Posición y tamaño del disco), será
 recuperada por el arduino, el BackEnd la guarda, y la envía a la aplicación para que pueda ser recuperada en pantalla.
-Toda la información que se adquiera del electroimán, se obtiene por medio de sensores de cercanía, contacto y tamaño.
 
 Como resultado, se obtiene una aplicación interactiva que es capáz de establecer comunicación con un módulo distinto al propio, y 
 también hace posible la recuperación de información.
+
