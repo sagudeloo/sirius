@@ -22,12 +22,12 @@
 
 # Flutter/Dart/Pub related
 **/doc/api/
-sirius_flutter_app/.dart_tool/
-sirius_flutter_app/.flutter-plugins
-sirius_flutter_app/.packages
-sirius_flutter_app/.pub-cache/
-sirius_flutter_app/.pub/
-sirius_flutter_app/build/
+sirius_flutter_*/.dart_tool/
+sirius_flutter_*/.flutter-plugins
+sirius_flutter_*/.packages
+sirius_flutter_*/.pub-cache/
+sirius_flutter_*/.pub/
+sirius_flutter_*/build/
 
 # Android related
 **/android/**/gradle-wrapper.jar
