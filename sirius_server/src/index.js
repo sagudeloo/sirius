@@ -51,6 +51,7 @@ async function star_serial_communication() {
 
     //declara los eventos de apertura entrada y error del puerto
     port.on('open', function () {
+      port_state = true;
       console.log('connetion is opened');
     });
 

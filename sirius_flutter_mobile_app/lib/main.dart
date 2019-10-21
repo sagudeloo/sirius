@@ -18,7 +18,6 @@ import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'dart:async'; //Asyncronus library for http requests.
 import 'dart:convert'; //Library for json transformation.
-import 'package:adhara_socket_io/adhara_socket_io.dart';
 
 //import 'package:flutter/services.dart';
 //import 'package:holding_gesture/holding_gesture.dart';          //Currently not used but will be needed in posterior improvements.
@@ -48,7 +47,7 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   final String title;
 
-  MyHomePage({Key key, @required this.title, @required this.channel})
+  MyHomePage({Key key, @required this.title})
       : super(key: key);
 
   @override
@@ -60,8 +59,6 @@ enum ConnectionStatus { connected, disconnected }
 //Remember to write ' with WidgetsBindingObserver if needed'
 
 class _MyHomePageState extends State<MyHomePage> {
-  SocketIOManager manager = SocketIOManager();
-  SocketIO socket;
   var status = ConnectionStatus.disconnected;
   final String _host = 'Enter your Host'; //For get
   int _size = 0;
@@ -90,27 +87,6 @@ class _MyHomePageState extends State<MyHomePage> {
         break;
     }
   }
-
-  /* @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    super.didChangeAppLifecycleState(state);
-    switch(state){
-      
-      case AppLifecycleState.resumed:
-        // _client = http.Client();
-        break;
-      case AppLifecycleState.inactive:
-        
-        break;
-      case AppLifecycleState.paused:
-        // _client.close();
-        break;
-      case AppLifecycleState.suspending:
-        print('Suspending');
-        // _client.close();
-        break;
-    }
-  } */
 
   @override
   void dispose() {
@@ -145,59 +121,19 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void sendData(String message) {
-    if (status == ConnectionStatus.connected) {
-      socket.emit("send_to_arduino", [message]);
+    if ( status == ConnectionStatus.connected) {
+
     }
   }
 
   void connect() async {
-    socket = await manager.createInstance(SocketOptions(_host));
-    socket.onConnect((data) {
-      status = ConnectionStatus.connected;
-      print("connected...");
-    });
-    socket.onConnectError((data) {
-      print("Connection Error");
-    });
-    socket.onConnectTimeout((data) {
-      print("Connection Timed Out");
-    });
-    socket.connect();
+    
   }
 
   void disconnect() async {
-    await manager.clearInstance(socket);
-    status = ConnectionStatus.disconnected;
+    
     print("disconnected");
   }
-
-/*
-  void sendData(String message) async{
-    try{
-      var response = await _client.get(_url, headers: {'data' : message});            //The message goes as a map in headers.
-      response.statusCode == 200? print('Succesfuly sent'):print('Unsuccesful sent');
-    } on Exception catch(e){
-      print('Send Error: $e');
-    }
-  }
-*/
-
-/*
-  void getData() async{
-    try{
-      var response = await _client.get(_host);         //Change host for the host path to use.
-      _data = json.decode(response.body);
-      setState(() {
-        _size = _data['tamanno_disc'];
-        _size<=3 && _size>=0 ? _size = _size : _size=0;
-        _position = _data['posicion'];
-        _magnet_On = _data['iman'];
-      });
-    } on Exception catch(e){
-      print('Get Error: $e');
-    }
-  }
-*/
 
   @override
   Widget build(BuildContext context) {
@@ -213,18 +149,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       backgroundColor: Colors.white,
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
@@ -243,14 +168,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       fontWeight: FontWeight.w700,
                       color: Colors.deepPurple[300]),
                 ),
-                /*DecoratedBox(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('images/Logo.PNG')
-                    )
-                  ),
-                )
-                */
               ),
             ),
             SizedBox(
@@ -264,17 +181,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           height: 60,
                           width: 60,
                           decoration: BoxDecoration(
-                              shape: BoxShape.circle, color: Colors.grey[300]),
-                          child: Text(
-                                    _position,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontFamily: 'Raleway',
-                                        color: Colors.purple,
-                                        fontSize: 50.0),
-                                  );
-                                }
-                              })),
+                              shape: BoxShape.circle, )),
                       Text(
                         'Position',
                         style: TextStyle(
@@ -420,13 +327,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      /*
-      floatingActionButton: FloatingActionButton(
-        onPressed: getData,
-        tooltip: 'Get Machine Data',
-        child: Icon(Icons.data_usage),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-      */
     );
   }
 }
