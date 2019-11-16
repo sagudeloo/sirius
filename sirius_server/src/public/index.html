@@ -20,63 +20,127 @@
       <h1 class="display-3 ">Sirius</h1>
     </div>
   </div>
-  <div class=" m-5">
-    <div class="container d-flex align-items-center justify-content-around" style="height: 100%; width: 100%;">
-      <div class="row m-3" style="width: 100%;">
-        <div class="card-group">
-          <div class="card text-center" style="min-height: 220px; min-width: 150px;">
-            <div id="posicion" class="card-body">
-              <h4>
-                Posicion
-              </h4>
+  <div class="container d-flex align-items-center justify-content-around"
+    style="height: 100%; width: 100%; margin: 1%;">
+    <div class="row" style="width: 100%;">
+      <div class="col" style="width: 100%;">
+        <div class="card text-center" style="min-height: 220px; width: 100%;">
+          <div id="posicion" class="card-body">
+            <h4>
+              Posicion
+            </h4>
+            <br>
+            <div class="row d-flex align-items-center justify-content-around">
+              <div class="col d-flex align-items-center justify-content-center">
+                <div class="p"></div>
+              </div>
+              <div class="col d-flex align-items-center justify-content-center">
+                <div class="p"></div>
+              </div>
+              <div class="col d-flex align-items-center justify-content-center">
+                <div class="ps"></div>
+              </div>
             </div>
           </div>
-          <div class="card text-center" style="min-height: 220px; min-width: 150px;">
-            <div id="tamanno_disc" class="card-body">
-              <h4>
-                Disco
-              </h4>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row m-3" style="width: 100%;">
-        <div class="container" style="height: 100%; width: 100%;">
-          <div class="row m-3" style="width: 100%;">
-            <div class="col d-flex align-items-center justify-content-center">
-              <button class="btn btn-info" style="height: 50px; width: 50px;" onclick="up()">
-                <h3>^</h3>
-              </button>
-            </div>
-          </div>
-          <div class="row m-3 d-flex align-items-center justify-content-center" style="width: 100%;">
-            <div class="col d-flex align-items-center justify-content-around">
-              <button class="btn btn-info" style="height: 50px; width: 50px;" onclick="left()">
-                <h3>&lt</h3>
-              </button>
-            </div>
-            <div class="col-sm d-flex align-items-center justify-content-around">
-              <button id="grab" type="button" class="btn btn-danger rounded-pill text-center btn-lg" onclick="graber()">Grab</button>
-            </div>
-            <div class="col-sm d-flex align-items-center justify-content-around">
-              <button id="iman" type="button" class="btn btn-danger rounded-pill text-center btn-lg" onclick="magnet()">Iman</button>
-            </div>
-            <div class="col d-flex align-items-center justify-content-around">
-              <button class="btn btn-info" style="height: 50px; width: 50px;" onclick="right()">
-                <h3>&gt</h3>
-              </button>
-            </div>
-          </div>
-          <div class="row m-3" style="width: 100%;">
-            <div class="col d-flex align-items-center justify-content-center" onclick="down()">
-              <button class="btn btn-info" style="height: 50px; width: 50px;">
-                <h3>v</h3>
-              </button>
+          <div class="container" style="height: 100%; padding: 20px;">
+            <div class="row align-items-end justify-content-around">
+              <div class="col border border-primary rounded"
+                style="min-height: 110px; max-width: 90px; padding: 0%; margin: 10px;">
+                <div class="container align-items-end justify-content-center" style="height: 100%;padding: 0%;">
+                  <div class="container" style="height: 100%;"></div>
+                  <div class="row justify-content-center align-self-end" style="margin: 5px;">
+                    <div class="r1"></div>
+                  </div>
+                  <div class="row justify-content-center align-self-end" style="margin: 5px;">
+                    <div class="r3"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col border border-primary rounded"
+                style="min-height: 110px; max-width: 90px; padding: 0%; margin: 10px;">
+                <div class="container align-items-end justify-content-center" style="height: 100%;padding: 0%;">
+                  <div class="container" style="height: 100%;"></div>
+                  <div class="row justify-content-center align-self-end" style="margin: 5px;">
+                    <div class="r5"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col border border-primary rounded"
+                style="min-height: 110px; max-width: 90px; padding: 0%; margin: 10px;">
+                <div class="row align-items-end justify-content-center" style="height: 110px;padding: 0%;">
+                  <div class="col d-flex position-sticky align-items-center justify-content-center"
+                    style="margin-bottom: 5px; margin-top: 5px; padding: 0%;">
+                    <div class="r1"></div>
+                  </div>
+                  <div class="col d-flex position-sticky align-items-center justify-content-center"
+                    style="margin-bottom: 5px; margin-top: 5px; padding: 0%;">
+                    <div class="r2"></div>
+                  </div>
+                  <div class="col d-flex position-sticky align-items-center justify-content-center"
+                    style="margin-bottom: 5px; margin-top: 5px; padding: 0%;">
+                    <div class="r3"></div>
+                  </div>
+                  <div class="col d-flex position-sticky align-items-center justify-content-center"
+                    style="margin-bottom: 5px; margin-top: 5px; padding: 0%;">
+                    <div class="r4"></div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <div class="col col-md-auto">
+      <div class="card text-center" style="min-height: 220px; min-width: 170px; width: 100%;">
+        <div id="tamanno_disc" class="card-body">
+          <h4>Disco</h4><br>
+          <div class="d-flex align-items-center justify-content-around">
+            <div class="disco-5"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col col-md-auto" style="height: 100%; padding: 0%;">
+      <div class="row d-flex align-items-center justify-content-center"
+        style="width: 100%; margin-top: 2%; margin: 0px;">
+        <div class="col d-flex align-items-center justify-content-center">
+          <button class="btn btn-info" style="height: 50px; width: 50px;" onclick="up()">
+            <h3>^</h3>
+          </button>
+        </div>
+      </div>
+      <div class="row d-flex align-items-center justify-content-center"
+        style="width: 100%; margin-top: 2%; margin: 0px;">
+        <div class="col d-flex align-items-center justify-content-around">
+          <button class="btn btn-info" style="height: 50px; width: 50px;" onclick="left()">
+            <h3>&lt</h3>
+          </button>
+        </div>
+        <div class="col d-flex align-items-center justify-content-around">
+          <button id="grab" type="button" class="btn btn-danger rounded-pill text-center btn-lg"
+            onclick="graber()">Grab</button>
+        </div>
+        <div class="col d-flex align-items-center justify-content-around">
+          <button id="iman" type="button" class="btn btn-danger rounded-pill text-center btn-lg"
+            onclick="magnet()">Iman</button>
+        </div>
+        <div class="col d-flex align-items-center justify-content-around">
+          <button class="btn btn-info" style="height: 50px; width: 50px;" onclick="right()">
+            <h3>&gt</h3>
+          </button>
+        </div>
+      </div>
+      <div class="row d-flex align-items-center justify-content-center"
+        style="width: 100%; margin-top: 2%; margin: 0px;">
+        <div class="col d-flex align-items-center justify-content-center" onclick="down()">
+          <button class="btn btn-info" style="height: 50px; width: 50px;">
+            <h3>v</h3>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
   </div>
   <script src="/socket.io/socket.io.js" charset="utf-8"></script>
   <script src="main.js" charset="utf-8"></script>
