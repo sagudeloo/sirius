@@ -18,11 +18,11 @@ int posicion = 0;
 int tamanno = 0;
 char charRec = 0; 
 boolean iman = false;
+boolean confirm = false;
 String lastResponse = "";
 String response = "";
 
 void setup() {
-  Serial.begin(9600);
   pinMode(up, OUTPUT);
   pinMode(down, OUTPUT);
   pinMode(left, OUTPUT);
@@ -37,6 +37,12 @@ void setup() {
   pinMode(sen2, INPUT);
   pinMode(sen3, INPUT);
   pinMode(sen4, INPUT);
+  Serial.begin(9600);
+  moveUp();
+  while ( digitalRead(p1) == LOW) {
+    digitalWrite(left, HIGH);
+  }
+  digitalWrite(left, LOW);
 }
 
 /*
@@ -59,24 +65,29 @@ void loop() {
       break;
     case 'l':
       moveLeft();
+      Serial.println("l1");
       break;
     case 'r':
       moveRight();
+      Serial.println("r1");
       break;
     case 'e':
       grabAndDrop();
       break;
+    case '¬':
+      confirm = true;
     default:
       break;
     }
   }
   posicion = preguntarPosHor();
   tamanno = iman? tamanno:getTamanno();
-  response = String(posicion) +","+ String(iman) +","+ String(tamanno);
+  response = String(posicion) +","+ String(iman) +","+ String(tamanno) +","+ String(confirm);
   if(response != lastResponse){
     lastResponse = response;
     Serial.println(response);
   }
+  confirm = false;
 }
 
 /*
@@ -87,7 +98,10 @@ Método encargado de recuperar el tamaño del disco con el que se esté mantenie
  s: small
  */
 int getTamanno() {
-  if(digitalRead(sen3)){
+  if(digitalRead(sen4)){
+    return 4;
+  }
+  else if(digitalRead(sen3)){
     return 3;
   }
   else if(digitalRead(sen2)){
@@ -116,7 +130,7 @@ int preguntarPosHor() {
     return 3;
   }
   else {
-    return 0;
+    return preguntarPosHor();
   }
 }
 
@@ -140,30 +154,39 @@ int preguntarPosVer() {
 
 void moveLeft(){
   if (posicion == 2) {
+    Serial.println("l2");
     while ( digitalRead(p1) == LOW) {
       digitalWrite(left, HIGH);
     }
+    delay(10);
     digitalWrite(left, LOW);
   } 
   else if (posicion == 3) {
+    Serial.println("l3");
     while (digitalRead(p2) == LOW) {
       digitalWrite(left, HIGH);
     }
+    delay(10);
     digitalWrite(left, LOW);
   }
 }
 
 void moveRight(){
+  Serial.println(posicion);
   if (posicion == 1) {
+    Serial.println("r2");
     while ( digitalRead(p2) == LOW) {
       digitalWrite(right, HIGH);
     }
+    delay(10);
     digitalWrite(right, LOW);
   } 
   else if (posicion == 2) {
+    Serial.println("r3");
     while (digitalRead(p3) == LOW) {
       digitalWrite(right, HIGH);
     }
+    delay(10);
     digitalWrite(right, LOW);
   }
 }
@@ -188,6 +211,7 @@ void grabAndDrop(){
   digitalWrite(eMag, iman);
   delay(200);
 }
+
 
 
 

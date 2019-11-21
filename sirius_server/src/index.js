@@ -64,7 +64,8 @@ async function star_serial_communication() {
         io.sockets.emit('read_from_arduino', {
           "posicion": data[0],
           "iman": data[1],
-          "tamanno_disc": data[2]
+          "tamanno_disc": data[2],
+          "confirmacion" : data[3]
         });
       }
     });
