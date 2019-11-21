@@ -74,7 +74,7 @@ void loop() {
     case 'e':
       grabAndDrop();
       break;
-    case '¬':
+    case 't':
       confirm = true;
     default:
       break;
